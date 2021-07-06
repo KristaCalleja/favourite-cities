@@ -6,14 +6,11 @@ body{
     background-color: bisque;
 }
 .wrapper{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin-top: 2.5em;
 }
 .boxes{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-gap: 1.3em;
 }
 .box{
@@ -30,8 +27,11 @@ body{
     box-shadow: -1px 2px 8px -6px #000000;
     border-radius: 9px;
 }
-@media(max-width: 900px){
+@media(min-width: 900px){
+    .wrapper{
+        margin-top: 5em;
+    }
     .boxes{
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 }
