@@ -3,31 +3,22 @@ const swissTime = document.getElementById('ch-hr');
 const belgianTime = document.getElementById('be-hr');
 const brazilTime = document.getElementById('br-hr');
 
-// Fetch time from WorldTimeApi.org
-// function fetchTime(){
-//     fetch(`http://worldtimeapi.org/api/timezone/Europe/Zurich`)
-// }
-
 function calcTime(offset){
-    var d = new Date();
-    var utc = d.getTime() + (d.getTimezoneOffset() * 6000);
-    var nd= new Date(utc + (3600000*offset));
-    return nd.toLocaleString();
+    // called as a constructor, it returns a new Date object (acc to local machine)
+    let d = new Date();
+    console.log(d);
+    // getTime() method returns the number of ms since the Unix epoch (e.g. 1625583448306)
+    // getTimezoneOffset() method returns the difference between a date evaluated in the UTC time zone and the same date as evaluated in the local time zone.
+    let utc = d.getTime() + (d.getTimezoneOffset() * 1000);
+    console.log(utc);
+    let nd= new Date(utc + (3600000*offset));
+    let hours = nd.getHours();
+    let minutes = nd.getMinutes();
+    return `${hours} : ${minutes}`;  
 }
-console.log(calcTime('+4'));
-let unix_timestamp = 1625579204
-// Create a new JavaScript Date object based on the timestamp
-// multiplied by 1000 so that the argument is in milliseconds, not seconds.
-var date = new Date(unix_timestamp * 1000);
-// Hours part from the timestamp
-var hours = date.getHours();
-// Minutes part from the timestamp
-var minutes = "0" + date.getMinutes();
-// Seconds part from the timestamp
-var seconds = "0" + date.getSeconds();
 
-// Will display time in hr:mm:ss format
-var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+maltaTime.textContent = `${calcTime('+5')}`;
+swissTime.textContent = `${calcTime('+5')}`;
+belgianTime.textContent = `${calcTime('+5')}`;
+brazilTime.textContent = `${calcTime('0')}`;
 
-console.log(formattedTime);
-maltaTime.textContent = `${formattedTime}`
