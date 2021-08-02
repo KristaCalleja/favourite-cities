@@ -27,6 +27,14 @@ body{
     box-shadow: -1px 2px 8px -6px #000000;
     border-radius: 9px;
 }
+ion-icon{
+    position: absolute;
+    z-index: 2;
+    cursor: grab;
+}
+ion-icon:active{
+    cursor: grabbing;
+}
 @media(min-width: 900px){
     .wrapper{
         margin-top: 5em;
