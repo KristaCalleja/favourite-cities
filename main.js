@@ -39,5 +39,5 @@ function drop(event){
     var data = event.dataTransfer.getData('text');
 
     thisdiv = event.target;
-    $(document.getElementById(data)).before(thisdiv);
+    $(document.getElementById(data)).insertBefore(thisdiv);
 }
