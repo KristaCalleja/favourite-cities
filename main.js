@@ -2,6 +2,7 @@ const maltaTime = document.getElementById('mt-hr');
 const swissTime = document.getElementById('ch-hr');
 const belgianTime = document.getElementById('be-hr');
 const brazilTime = document.getElementById('br-hr');
+const italyTime = document.getElementById('it-hr');
 
 function calcTime(offset){
     // called as a constructor, it returns a new Date object (acc to local machine)
@@ -20,6 +21,7 @@ function calcTime(offset){
 maltaTime.textContent = `${calcTime('+5')}`;
 swissTime.textContent = `${calcTime('+5')}`;
 belgianTime.textContent = `${calcTime('+5')}`;
+italyTime.textContent = `${calcTime('+5')}`;
 brazilTime.textContent = `${calcTime('0')}`;
 
 function allowDrop(event){
@@ -46,10 +48,12 @@ window.onload = function(){
     const swissWeather = document.querySelector('.ch-weather');
     const belgianWeather = document.querySelector('.be-weather');
     const brazilianWeather = document.querySelector('.br-weather');
+    const italyWeather = document.querySelector('.it-weather');
     const maltaDataPromise = fetch('https://goweather.herokuapp.com/weather/Sliema');
     const swissDataPromise = fetch('https://goweather.herokuapp.com/weather/Zurich');
     const belgianDataPromise = fetch('https://goweather.herokuapp.com/weather/Leuven');
     const brazilianDataPromise = fetch('https://goweather.herokuapp.com/weather/Rio_de_janeiro');
+    const italianDataPromise = fetch('https://goweather.herokuapp.com/weather/Perugia');
     maltaDataPromise
         .then((response) => {
             return response.json();
@@ -84,6 +88,15 @@ window.onload = function(){
         .then((data) => {
             console.log(data.temperature);
             brazilianWeather.innerText = `${data.temperature}`;
+        })
+        .catch(handleError);
+    italianDataPromise
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.temperature);
+            italyWeather.innerText = `${data.temperature}`;
         })
         .catch(handleError);
 }
