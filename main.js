@@ -34,10 +34,62 @@ function drag(event){
     event.dataTransfer.setData('text', event.target.id);
 }
 function drop(event){
-    console.log('drop');
     event.preventDefault();
     var data = event.dataTransfer.getData('text');
-
     thisdiv = event.target;
     $(document.getElementById(data)).insertBefore(thisdiv);
+    console.log('dropped');
+}
+
+window.onload = function(){
+    const maltaWeather = document.querySelector('.mt-weather');
+    const swissWeather = document.querySelector('.ch-weather');
+    const belgianWeather = document.querySelector('.be-weather');
+    const brazilianWeather = document.querySelector('.br-weather');
+    const maltaDataPromise = fetch('https://goweather.herokuapp.com/weather/Sliema');
+    const swissDataPromise = fetch('https://goweather.herokuapp.com/weather/Zurich');
+    const belgianDataPromise = fetch('https://goweather.herokuapp.com/weather/Leuven');
+    const brazilianDataPromise = fetch('https://goweather.herokuapp.com/weather/Rio_de_janeiro');
+    maltaDataPromise
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.temperature);
+            maltaWeather.innerText = `${data.temperature}`;
+        })
+        .catch(handleError);
+    swissDataPromise
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.temperature);
+            swissWeather.innerText = `${data.temperature}`;
+        })
+        .catch(handleError);
+    belgianDataPromise
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.temperature);
+            belgianWeather.innerText = `${data.temperature}`;
+        })
+        .catch(handleError);
+    brazilianDataPromise
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data.temperature);
+            brazilianWeather.innerText = `${data.temperature}`;
+        })
+        .catch(handleError);
+}
+
+// Error handler
+function handleError(err){
+    console.log("Error");
+    console.log(err);
 }
