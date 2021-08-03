@@ -22,3 +22,22 @@ swissTime.textContent = `${calcTime('+5')}`;
 belgianTime.textContent = `${calcTime('+5')}`;
 brazilTime.textContent = `${calcTime('0')}`;
 
+function allowDrop(event){
+    console.log('allowdrop');
+    event.preventDefault();
+}
+function drag(event){
+    console.log('drag');
+    const boxGrid = document.querySelector('.boxes');
+    event.currentTarget.style.border = '4px yellow solid';
+    boxGrid.style.border = '4px black dashed';
+    event.dataTransfer.setData('text', event.target.id);
+}
+function drop(event){
+    console.log('drop');
+    event.preventDefault();
+    var data = event.dataTransfer.getData('text');
+
+    thisdiv = event.target;
+    $(document.getElementById(data)).before(thisdiv);
+}
